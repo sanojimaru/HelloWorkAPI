@@ -55,7 +55,7 @@ module Hellowork
       @attributes ||= ATTRIBUTE_NAMES.inject({}){|res, n| res[n] = get_data(n); res }
     end
 
-    def get_data(name=nil)
+    def get_data(name)
       data_node = @page.at("//div[contains(@class, 'd-table')]/table//tr/th[.='#{name}']/following-sibling::td")
       data_node.inner_text.strip if data_node
     end
