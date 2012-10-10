@@ -1,5 +1,5 @@
 # MySQL.  Versions 4.1 and 5.0 are recommended.
-# 
+#
 # Install the MYSQL driver
 #   gem install mysql2
 #
@@ -37,6 +37,6 @@ production:
   reconnect: false
   database: HelloWorkAPI_production
   pool: 5
-  username: root
+  username: bitnami
   password:
-  socket: /tmp/mysql.sock
+  socket: /opt/bitnami/mysql/tmp/mysql.sock
