@@ -37,6 +37,6 @@ production:
   reconnect: false
   database: HelloWorkAPI_production
   pool: 5
-  username: bitnami
-  password:
+  username: root
+  password: bitnami
   socket: /opt/bitnami/mysql/tmp/mysql.sock
