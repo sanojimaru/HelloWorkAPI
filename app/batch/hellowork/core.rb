@@ -9,7 +9,7 @@ module Hellowork
     def initialize(params={})
       config = params.merge({
         start_page_url: 'https://www.hellowork.go.jp/servicef/130020.do?action=initDisp&screenId=130020',
-        request_interval: 0.5,
+        request_interval: 0.2,
       })
 
       self.start_page_url = config[:start_page_url]
@@ -20,8 +20,9 @@ module Hellowork
       index_page_limit = limit > -1 ? (limit.to_f / 20).ceil : limit
 
       IndexPage.pages(index_page_limit) do |index_page|
+        Rails.logger.info "Download index page, URL: #{index_page.page.uri}"
         index_page.detail_pages do |detail_page|
-          Rails.logger.debug "Create job from detail page, URL is #{detail_page.page.uri}"
+          Rails.logger.info "Create job from detail page, URL is #{detail_page.page.uri}"
           Job.create! detail_page.attributes.merge(url: detail_page.page.uri.to_s)
         end
       end

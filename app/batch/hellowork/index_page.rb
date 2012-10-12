@@ -8,21 +8,23 @@ module Hellowork
 
           agent.page.form_with(:name => 'mainForm') do |form|
             #form.field_with(:name => 'kiboSangyo').option_with(:value => 'P').select
-            form.checkbox_with(:name => 'shinchakuKyujin').check
+            #form.checkbox_with(:name => 'shinchakuKyujin').check
             form.click_button form.button_with(:name => 'commonSearch')
           end
 
           page_no = 0
           until limit > -1 && page_no >= limit
-            Rails.logger.debug "Download index page from [#{agent.page.uri}], no.#{page_no}"
-
             block.call IndexPage.new(agent.page)
 
-            form = agent.page.form_with(:name => 'multiForm2')
-            break unless form
+            unless form = agent.page.form_with(:name => 'multiForm2')
+              Rails.logger.error "IndexPage form is not available, URL: #{agent.page.uri}"
+              break
+            end
 
-            next_button = form.button_with(:name => 'fwListNaviBtnNext')
-            break unless next_button
+            unless next_button = form.button_with(:name => 'fwListNaviBtnNext')
+              Rails.logger.error "IndexPage next button is not available, URL: #{agent.page.uri}"
+              break
+            end
 
             form.click_button next_button
 
@@ -39,7 +41,6 @@ module Hellowork
     def detail_pages(&block)
       @page.parser.css('#container .d-sole table a[name=link]').map do |atag|
         uri = @page.uri.merge(URI.parse(atag.attribute('href')))
-        Rails.logger.debug "Download detail page from [#{uri}]"
 
         block.call DetailPage.new(Mechanize.new.get(uri))
         sleep Core.request_interval
