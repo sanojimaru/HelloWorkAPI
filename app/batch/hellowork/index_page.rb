@@ -34,6 +34,9 @@ module Hellowork
         end
       end
     end
+
+    attr_accessor :page
+
     def initialize(page)
       @page = page
     end
