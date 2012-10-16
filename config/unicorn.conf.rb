@@ -7,7 +7,7 @@ require 'bundler/setup'
 worker_processes 4
 working_directory APP_ROOT
 preload_app true
-timeout 360
+timeout 300
 
 listen APP_ROOT + "/tmp/sockets/unicorn.sock", :backlog => 64
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
