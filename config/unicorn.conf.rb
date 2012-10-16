@@ -4,10 +4,10 @@ APP_ROOT = File.expand_path(APP_NAME)
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
 require 'bundler/setup'
 
-worker_processes 2
+worker_processes 4
 working_directory APP_ROOT
 preload_app true
-timeout 60
+timeout 360
 
 listen APP_ROOT + "/tmp/sockets/unicorn.sock", :backlog => 64
 pid APP_ROOT + "/tmp/pids/unicorn.pid"
