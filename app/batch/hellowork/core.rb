@@ -27,5 +27,12 @@ module Hellowork
         end
       end
     end
+
+    def output
+      output_filepath = Rails.root.join('public/output/test.csv')
+      CSV.open(output_filepath, 'w') do |writer|
+        Job.limit(10).each{|job| writer << job.attributes.values}
+      end
+    end
   end
 end
