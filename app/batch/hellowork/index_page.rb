@@ -7,7 +7,7 @@ module Hellowork
           agent.get URI.parse(Core.start_page_url)
 
           agent.page.form_with(:name => 'mainForm') do |form|
-            #form.field_with(:name => 'kiboSangyo').option_with(:value => 'P').select
+            form.field_with(:name => 'kiboSangyo').option_with(:value => 'P').select
             #form.checkbox_with(:name => 'shinchakuKyujin').check
             form.click_button form.button_with(:name => 'commonSearch')
           end
@@ -16,12 +16,10 @@ module Hellowork
           until limit > -1 && page_no >= limit
             block.call IndexPage.new(agent.page)
 
-            unless form = agent.page.form_with(:name => 'multiForm2')
-              Rails.logger.error "IndexPage form is not available, URL: #{agent.page.uri}"
-              break
-            end
+            form = agent.page.form_with(:name => 'multiForm2')
+            next_button = form.button_with(:name => 'fwListNaviBtnNext') if form
 
-            unless next_button = form.button_with(:name => 'fwListNaviBtnNext')
+            unless next_button
               Rails.logger.error "IndexPage next button is not available, URL: #{agent.page.uri}"
               break
             end

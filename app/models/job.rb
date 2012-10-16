@@ -1,8 +1,13 @@
+# -*- coding: utf-8 -*-
 class Job < ActiveRecord::Base
   attr_accessible :no,
     :url,
     :kind,
     :name,
+    :full_address,
+    :pref,
+    :zipcode,
+    :city,
     :address,
     :tel,
     :fax,
@@ -44,6 +49,15 @@ class Job < ActiveRecord::Base
     :receipted_by,
     :expires_at
 
+  before_validation :parse_address
+
   validates :no, presence: true, uniqueness: true
   validates :url, presence: true, uniqueness: true
+
+  def parse_address
+    self.zipcode = $1 if /(\d{3}-\d{4})/ =~ self.full_address
+    self.city = $1 if /^.*\d{3}-\d{4}(.*[市|区|村|郡])/ =~ self.full_address
+    self.address = $1 if /^.*\d{3}-\d{4}.+[市|区|村|郡](.*)/ =~ self.full_address
+    self
+  end
 end

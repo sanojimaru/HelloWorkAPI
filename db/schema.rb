@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016013855) do
+ActiveRecord::Schema.define(:version => 20121016062345) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -78,6 +78,10 @@ ActiveRecord::Schema.define(:version => 20121016013855) do
     t.string   "expires_at"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
+    t.string   "full_address"
+    t.string   "zipcode"
+    t.string   "pref"
+    t.string   "city"
   end
 
   add_index "jobs", ["no"], :name => "index_jobs_on_no", :unique => true

@@ -6,7 +6,7 @@ module Hellowork
       url: nil,
       kind: '求人情報の種類',
       name: '事業所名',
-      address: '所在地',
+      full_address: '所在地',
       tel: '電話番号',
       fax: 'FAX番号',
       business_description: '事業内容',
@@ -63,7 +63,11 @@ module Hellowork
 
     def get_data(name)
       node = @page.at("//div[contains(@class, 'd-table')]/table//tr/th[.='#{name}']/following-sibling::td")
-      node.inner_text.strip if node
+      if node
+        node.inner_text.strip
+      else
+        Rails.logger.error("Job data is not found in detail page, URL: #{@page.uri}")
+      end
     end
   end
 end

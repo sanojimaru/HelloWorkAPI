@@ -28,8 +28,8 @@ module Hellowork
       end
     end
 
-    def output
-      output_filepath = Rails.root.join('public/output/test.csv')
+    def output(output_filepath)
+      output_filepath = Rails.root.join('public/output/test.csv') unless output_filepath
       CSV.open(output_filepath, 'w') do |writer|
         Job.limit(10).each{|job| writer << job.attributes.values}
       end
