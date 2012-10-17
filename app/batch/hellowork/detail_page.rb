@@ -67,6 +67,7 @@ module Hellowork
         node.inner_text.strip
       else
         Rails.logger.error("Job data is not found in detail page, URL: #{@page.uri}")
+        nil
       end
     end
   end
