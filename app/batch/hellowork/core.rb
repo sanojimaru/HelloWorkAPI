@@ -23,7 +23,9 @@ module Hellowork
         Rails.logger.info "Download index page, URL: #{index_page.page.uri}"
         index_page.detail_pages do |detail_page|
           Rails.logger.info "Create job from detail page, URL is #{detail_page.page.uri}"
-          Job.create! detail_page.attributes.merge(url: detail_page.page.uri.to_s)
+          unless Job.exists?(url: detail_page.page.uri.to_s)
+            Job.create! detail_page.attributes.merge(url: detail_page.page.uri.to_s)
+          end
         end
       end
     end
