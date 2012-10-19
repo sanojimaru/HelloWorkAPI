@@ -44,8 +44,8 @@ module Hellowork
       required_lisences: '必要な免許・資格',
       special_report: '求人条件にかかる特記事項',
       receipted_at: '受理日',
-      receipted_by: '有効期限日',
-      expires_at: '受理安定所',
+      receipted_by: '受理安定所',
+      expires_at: '有効期限日',
     }
 
     attr_reader :page
