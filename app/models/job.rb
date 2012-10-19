@@ -55,8 +55,8 @@ class Job < ActiveRecord::Base
   validates :url, presence: true, uniqueness: true
 
   class << self
-    def parse_address_all
-      all.each{|n| n.parse_address.save! }
+    def each_all(method)
+      find_each{|n| n.send(method).save! }
     end
   end
 
