@@ -7,7 +7,7 @@ module Hellowork
           agent.get URI.parse(Core.start_page_url)
 
           agent.page.form_with(:name => 'mainForm') do |form|
-            form.field_with(:name => 'kiboSangyo').option_with(:value => 'P').select
+            #form.field_with(:name => 'kiboSangyo').option_with(:value => 'P').select
             #form.checkbox_with(:name => 'shinchakuKyujin').check
             form.click_button form.button_with(:name => 'commonSearch')
           end
