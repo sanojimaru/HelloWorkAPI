@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121016062345) do
+ActiveRecord::Schema.define(:version => 20121108095410) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -117,5 +117,19 @@ ActiveRecord::Schema.define(:version => 20121016062345) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "zipcodes", :force => true do |t|
+    t.string   "jis_code",     :null => false
+    t.string   "zip_code_old", :null => false
+    t.string   "zip_code",     :null => false
+    t.string   "pref_kana",    :null => false
+    t.string   "city_kana",    :null => false
+    t.string   "town_kana",    :null => false
+    t.string   "pref",         :null => false
+    t.string   "city",         :null => false
+    t.string   "town",         :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
 end

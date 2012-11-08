@@ -62,9 +62,16 @@ class Job < ActiveRecord::Base
 
   def parse_address
     self.zipcode = $1 if /(\d{3}-\d{4})/ =~ self.full_address
-    self.pref = $1 if /^.*\d{3}-\d{4}(.+?[都|道|府|県])/ =~ self.full_address
-    self.city = $1 if /^.*\d{3}-\d{4}.+?[都|道|府|県](.+[市|区|村|郡])/ =~ self.full_address
-    self.address = $1 if /^.*\d{3}-\d{4}.+?[都|道|府|県].+[市|区|村|郡](.*)/ =~ self.full_address
+    if self.zipcode && zipcode_object = Zipcode.find_by_zip_code(self.zipcode.gsub('-', ''))
+      self.pref = zipcode_object.pref
+      self.city = zipcode_object.city
+      self.address = self.full_address.gsub /^.*\d{3}-\d{4}(#{zipcode_object.pref})?(#{zipcode_object.city})?/, ''
+    else
+      self.pref = $1 if /^.*\d{3}-\d{4}(.+?[都|道|府|県])/ =~ self.full_address
+      self.city = $1 if /^.*\d{3}-\d{4}.+?[都|道|府|県](.+[市|区|村|郡])/ =~ self.full_address
+      self.address = $1 if /^.*\d{3}-\d{4}.+?[都|道|府|県].+[市|区|村|郡](.*)/ =~ self.full_address
+    end
+
     self
   end
 end
