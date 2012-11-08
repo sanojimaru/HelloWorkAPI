@@ -1,7 +1,7 @@
 class SeedZipcodes
   class << self
     def seed
-      csv_path = Rails.root.join 'db/data/KEN_ALL.csv'
+      csv_path = Rails.root.join 'db/data/KEN_ALL.CSV'
       open(csv_path, "rb:Shift_JIS:UTF-8", undef: :replace) do |f|
         CSV.new(f).each_with_index do |row, index|
           puts "Processing line number #{index}..."
