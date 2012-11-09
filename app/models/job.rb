@@ -72,6 +72,7 @@ class Job < ActiveRecord::Base
       self.address = $1 if /^.*\d{3}-\d{4}.+?[都|道|府|県].+[市|区|村|郡](.*)/ =~ self.full_address
     end
 
+    self.address = self.address.gsub /　{2,}/, '　'
     self
   end
 end
