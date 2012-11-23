@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121108095410) do
+ActiveRecord::Schema.define(:version => 20121123080623) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -86,6 +86,18 @@ ActiveRecord::Schema.define(:version => 20121108095410) do
 
   add_index "jobs", ["no"], :name => "index_jobs_on_no", :unique => true
   add_index "jobs", ["url"], :name => "index_jobs_on_url", :unique => true
+
+  create_table "prefs", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.string   "name_alnum"
+    t.string   "area"
+    t.string   "area_alnum"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "prefs", ["code"], :name => "index_prefs_on_code", :unique => true
 
   create_table "rails_admin_histories", :force => true do |t|
     t.text     "message"

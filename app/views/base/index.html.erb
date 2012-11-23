@@ -1,0 +1,50 @@
+<h1>新着のお仕事一覧</h1>
+
+<div id="new_jobs">
+  <ul>
+    <% @new_jobs.each do |job| %>
+      <li>
+        <h2><%= job.name %></h2>
+        <p>
+          <span class="label"><%= link_to "#{job.pref}の求人" %></span>
+        </p>
+        <div class="well">
+          <h5>業務内容</h5>
+          <p><%= raw job.job_description.gsub("\n", "<br/>") %></p>
+        </div>
+
+        <table class="table table-bordered">
+          <tr>
+            <th>業種</th>
+            <td><%= job.business_description %></td>
+            <th>職種</th>
+            <td><%= job.job_type %></td>
+          </tr>
+          <tr>
+            <th>勤務時間</th>
+            <td><%= job.office_hours %></td>
+            <th>休日</th>
+            <td><%= job.holiday %></td>
+          </tr>
+          <tr>
+            <th>勤務場所</th>
+            <td colspan="3"><%= "#{job.pref}#{job.city}#{job.address}" %></td>
+          </tr>
+          <tr>
+            <th>賃金</th>
+            <td colspan="3"><%= raw job.wage.gsub("\n", "<br/>") %></td>
+          </tr>
+          <tr>
+            <th>募集場所</th>
+            <td><%= job.receipted_by %></td>
+            <th>整理番号</th>
+            <td><%= job.no %></td>
+          </tr>
+        </table>
+        <div class="actions">
+          <%= link_to 'この求人の詳細を見る', '#', class: 'btn btn-large btn-primary' %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</div>

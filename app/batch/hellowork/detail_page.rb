@@ -62,7 +62,15 @@ module Hellowork
     end
 
     def get_data(name)
-      node = @page.at("//div[contains(@class, 'd-table')]/table//tr/th[.='#{name}']/following-sibling::td")
+      case name
+      when ATTRIBUTES[:wage]
+        node = @page.at("//div[contains(@class, 'd-table')]/table//tr/th/a[.='賃金形態']/../following-sibling::td")
+      when ATTRIBUTES[:age_conditions_reasons]
+        node = @page.at("//div[contains(@class, 'd-table')]/table//tr/th/a[.='年齢制限禁止について']/../following-sibling::td")
+      else
+        node = @page.at("//div[contains(@class, 'd-table')]/table//tr/th[.='#{name}']/following-sibling::td")
+      end
+
       if node
         node.inner_text.strip
       else

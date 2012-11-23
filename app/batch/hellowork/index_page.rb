@@ -42,7 +42,6 @@ module Hellowork
     def detail_pages(&block)
       @page.parser.css('#container .d-sole table a[name=link]').map do |atag|
         uri = @page.uri.merge(URI.parse(atag.attribute('href')))
-
         block.call DetailPage.new(Mechanize.new.get(uri))
         sleep Core.request_interval
       end

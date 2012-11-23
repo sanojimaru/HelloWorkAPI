@@ -7,4 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require Rails.root.join 'db/seed_zipcodes.rb'
+require Rails.root.join 'db/seed_prefs.rb'
+
 SeedZipcodes.seed
+SeedPrefs.seed
