@@ -1,0 +1,47 @@
+<div class="page-header">
+  <h1><%= @job.name %></h1>
+</div>
+
+<p>
+<span class="label"><%= link_to "#{@job.pref}の求人" %></span>
+</p>
+
+<div class="well">
+  <h5>業務内容</h5>
+  <p><%= raw @job.job_description.gsub("\n", "<br/>") %></p>
+</div>
+
+<table class="table table-bordered">
+  <tr>
+    <th>業種</th>
+    <td><%= @job.business_description %></td>
+  </tr>
+  <tr>
+    <th>職種</th>
+    <td><%= @job.job_type %></td>
+  </tr>
+  <tr>
+    <th>勤務時間</th>
+    <td><%= @job.office_hours %></td>
+  </tr>
+  <tr>
+    <th>休日</th>
+    <td><%= @job.holiday %></td>
+  </tr>
+  <tr>
+    <th>勤務場所</th>
+    <td><%= "#{@job.pref}#{@job.city}#{@job.address}" %></td>
+  </tr>
+  <tr>
+    <th>賃金</th>
+    <td><%= raw @job.wage.gsub("\n", "<br/>") %></td>
+  </tr>
+  <tr>
+    <th>募集場所</th>
+    <td><%= @job.receipted_by %></td>
+  </tr>
+  <tr>
+    <th>整理番号</th>
+    <td><%= @job.no %></td>
+  </tr>
+</table>

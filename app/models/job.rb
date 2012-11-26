@@ -51,6 +51,8 @@ class Job < ActiveRecord::Base
 
   before_validation :parse_address
 
+  belongs_to :pref, foreign_key: :pref, primary_key: :name
+
   validates :no, presence: true, uniqueness: true
   validates :url, presence: true, uniqueness: true
 
