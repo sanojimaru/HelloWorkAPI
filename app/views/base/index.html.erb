@@ -8,7 +8,7 @@
       <li>
       <h2><%= job.name %></h2>
       <p>
-      <span class="label"><%= link_to "#{job.pref.name}の求人", pref_path(job.pref.name_alnum.downcase) %></span>
+      <span class="label"><%= link_to "#{job.pref_obj.name}の求人", pref_path(job.pref_obj.name_alnum.downcase) %></span>
       </p>
       <div class="well">
         <h5>業務内容</h5>
