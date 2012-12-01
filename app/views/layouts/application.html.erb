@@ -43,7 +43,7 @@
                 <h3 class="nav-header">都道府県一覧</h3>
                 <ul class="nav nav-list">
                   <% @common[:prefs].each do |pref| %>
-                    <li><%= link_to pref.name, pref.name_alnum.downcase %></li>
+                    <li><%= link_to pref.name, pref_path(pref.name_alnum.downcase) %></li>
                   <% end %>
                 </ul>
               </div><!--/.well -->
