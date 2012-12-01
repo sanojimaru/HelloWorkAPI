@@ -1,13 +1,13 @@
 <div class="jobs">
   <% jobs.each do |job| %>
     <div class="job">
-      <h2><%= job.name %></h2>
+      <h2 class="name"><%= link_to job.name, job %></h2>
       <p>
       <span class="label"><%= link_to "#{job.pref_obj.name}の求人", pref_path(job.pref_obj.name_alnum.downcase) %></span>
       </p>
       <div class="well">
         <h5>業務内容</h5>
-        <p><%= raw job.job_description.gsub("\n", "<br/>") %></p>
+        <p><%= text_to_html job.job_description %></p>
       </div>
 
       <table class="table table-bordered">

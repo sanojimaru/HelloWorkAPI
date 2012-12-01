@@ -1,50 +1,183 @@
 <% content_for :title do %>
   <%= @job.name %>の求人
 <% end %>
-<div class="page-header">
-  <h1><%= @job.name %></h1>
+<div class="job">
+  <div class="page-header">
+    <h1><%= link_to @job.name, @job %></h1>
+  </div>
+
+  <p>
+  <span class="label"><%= link_to "#{@job.pref}の求人" %></span>
+  </p>
+
+  <div class="well">
+    <h5>業務内容</h5>
+    <p><%= raw @job.job_description.gsub("\n", "<br/>") %></p>
+  </div>
+
+  <table class="table table-bordered">
+    <tr>
+      <th>事業所名</th>
+      <td><%= @job.name %></td>
+    </tr>
+    <tr>
+      <th>所在地</th>
+      <td><%= @job.full_address %></td>
+    </tr>
+    <tr>
+      <th>電話番号</th>
+      <td><%= @job.tel %></td>
+    </tr>
+    <tr>
+      <th>FAX番号</th>
+      <td><%= @job.fax %></td>
+    </tr>
+    <tr>
+      <th>業種</th>
+      <td><%= @job.business_description %></td>
+    </tr>
+    <tr>
+      <th>職種</th>
+      <td><%= @job.job_type %></td>
+    </tr>
+    <tr>
+      <th>産業</th>
+      <td><%= @job.industry %></td>
+    </tr>
+    <tr>
+      <th>雇用形態</th>
+      <td><%= @job.employment_type1 %></td>
+    </tr>
+    <tr>
+      <th>就業形態</th>
+      <td><%= @job.employment_type2 %></td>
+    </tr>
+    <tr>
+      <th>賃金</th>
+      <td><%= text_to_html @job.wage %></td>
+    </tr>
+    <tr>
+      <th>賞与</th>
+      <td><%= @job.bonus %></td>
+    </tr>
+    <tr>
+      <th>雇用期間</th>
+      <td><%= @job.employment_term %></td>
+    </tr>
+    <tr>
+      <th>年齢</th>
+      <td><%= @job.age_conditions %></td>
+    </tr>
+    <tr>
+      <th>年齢制限の理由</th>
+      <td><%= @job.age_conditions_reasons %></td>
+    </tr>
+    <tr>
+      <th>勤務時間</th>
+      <td><%= @job.office_hours %></td>
+    </tr>
+    <tr>
+      <th>休憩時間</th>
+      <td><%= @job.recess %></td>
+    </tr>
+    <tr>
+      <th>残業</th>
+      <td><%= @job.overtime_work %></td>
+    </tr>
+    <tr>
+      <th>週所定労働日数</th>
+      <td><%= @job.office_days_of_week %></td>
+    </tr>
+    <tr>
+      <th>休日</th>
+      <td><%= @job.holiday %></td>
+    </tr>
+    <tr>
+      <th>週休二日</th>
+      <td><%= @job.two_holidays_of_week %></td>
+    </tr>
+    <tr>
+      <th>年間休日数</th>
+      <td><%= @job.holidays_of_year %></td>
+    </tr>
+    <tr>
+      <th>育児休業取得実績</th>
+      <td><%= @job.childcare_leave_results %></td>
+    </tr>
+    <tr>
+      <th>託児所</th>
+      <td><%= @job.usable_day_care_center %></td>
+    </tr>
+    <tr>
+      <th>勤務場所</th>
+      <td><%= "#{@job.pref}#{@job.city}#{@job.address}" %></td>
+    </tr>
+    <tr>
+      <th>転勤</th>
+      <td><%= @job.transfer %></td>
+    </tr>
+    <tr>
+      <th>従業員数</th>
+      <td><%= @job.employees %></td>
+    </tr>
+    <tr>
+      <th>加入保険</th>
+      <td><%= @job.enrollment_insurance %></td>
+    </tr>
+    <tr>
+      <th>定年制</th>
+      <td><%= @job.age_limit_system %></td>
+    </tr>
+    <tr>
+      <th>再雇用</th>
+      <td><%= @job.reemployment %></td>
+    </tr>
+    <tr>
+      <th>入居可能住宅</th>
+      <td><%= @job.dormitory %></td>
+    </tr>
+    <tr>
+      <th>マイカー通勤</th>
+      <td><%= @job.traveling_by_car %></td>
+    </tr>
+    <tr>
+      <th>通勤手当</th>
+      <td><%= @job.commuting %></td>
+    </tr>
+    <tr>
+      <th>採用人数</th>
+      <td><%= @job.recruitment_amount %></td>
+    </tr>
+    <tr>
+      <th>学歴</th>
+      <td><%= @job.educational_background %></td>
+    </tr>
+    <tr>
+      <th>必要な経験等</th>
+      <td><%= @job.required_experience %></td>
+    </tr>
+    <tr>
+      <th>必要な免許・資格</th>
+      <td><%= @job.required_lisences %></td>
+    </tr>
+    <tr>
+      <th>求人条件にかかる特記事項</th>
+      <td><%= @job.special_report %></td>
+    </tr>
+    <tr>
+      <th>受理日</th>
+      <td><%= @job.receipted_at %></td>
+    </tr>
+    <tr>
+      <th>募集場所</th>
+      <td><%= @job.receipted_by %></td>
+    </tr>
+    <tr>
+      <th>整理番号</th>
+      <td><%= @job.no %></td>
+    </tr>
+  </table>
+  <div class="actions">
+    <%= link_to 'ハローワークの該当ページへ', @job.url, class: 'btn btn-primary btn-large' %>
+  </div>
 </div>
-
-<p>
-<span class="label"><%= link_to "#{@job.pref}の求人" %></span>
-</p>
-
-<div class="well">
-  <h5>業務内容</h5>
-  <p><%= raw @job.job_description.gsub("\n", "<br/>") %></p>
-</div>
-
-<table class="table table-bordered">
-  <tr>
-    <th>業種</th>
-    <td><%= @job.business_description %></td>
-  </tr>
-  <tr>
-    <th>職種</th>
-    <td><%= @job.job_type %></td>
-  </tr>
-  <tr>
-    <th>勤務時間</th>
-    <td><%= @job.office_hours %></td>
-  </tr>
-  <tr>
-    <th>休日</th>
-    <td><%= @job.holiday %></td>
-  </tr>
-  <tr>
-    <th>勤務場所</th>
-    <td><%= "#{@job.pref}#{@job.city}#{@job.address}" %></td>
-  </tr>
-  <tr>
-    <th>賃金</th>
-    <td><%= raw @job.wage.gsub("\n", "<br/>") %></td>
-  </tr>
-  <tr>
-    <th>募集場所</th>
-    <td><%= @job.receipted_by %></td>
-  </tr>
-  <tr>
-    <th>整理番号</th>
-    <td><%= @job.no %></td>
-  </tr>
-</table>

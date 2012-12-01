@@ -1,3 +1,33 @@
-// Place all the styles related to the jobs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// jobs
+.jobs {
+  .job {
+    h2 {
+      background: #DD4814;
+      border-radius: 10px;
+      color: #fff;
+      font: {
+        size: 18px;
+      }
+      padding: 0 15px;
+
+      a {
+        color: #fff;
+      }
+    }
+
+    table {
+      th {
+        width: 80px;
+      }
+    }
+  }
+}
+
+// jobs#show
+.job {
+  table {
+    th {
+      width: 120px;
+    }
+  }
+}
