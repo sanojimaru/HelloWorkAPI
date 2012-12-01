@@ -56,6 +56,8 @@ class Job < ActiveRecord::Base
   validates :no, presence: true, uniqueness: true
   validates :url, presence: true, uniqueness: true
 
+  default_scope includes(:pref_obj)
+
   scope :new_jobs, lambda{|limit=20|
     where('name IS NOT NULL').order('created_at DESC').limit(limit)
   }

@@ -3,6 +3,6 @@ class PrefsController < ApplicationController
     @pref = Pref.find_by_name_alnum(params[:pref])
     raise NotFoundException unless @pref
 
-
+    @jobs = Job.where(pref: @pref.name).page params[:page]
   end
 end
