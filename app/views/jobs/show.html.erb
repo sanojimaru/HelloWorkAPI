@@ -7,7 +7,7 @@
   </div>
 
   <p>
-  <span class="label"><%= link_to "#{@job.pref}の求人" %></span>
+  <span class="label"><%= link_to "#{@job.pref}の求人", pref_path(@job.pref_obj.name_alnum.downcase) %></span>
   </p>
 
   <div class="well">

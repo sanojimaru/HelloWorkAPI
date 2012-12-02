@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? "#{yield(:title)} | " : "" %>ハローワーク（公共職業安定所）の求人情報を検索する「はろわサーチ」</title>
     <meta name="keyword" content="ハローワーク,公共職業安定所,求人,検索">
-    <meta name="description" content="<%= content_for?(:title) ? "#{yield(:title)} | " : "" %>ハローワーク（公共職業安定所）の求人情報を検索する「はろわサーチ」">
+    <meta name="description" content="<%= content_for?(:title) ? "#{yield(:title)}。" : "" %>はろわサーチとは、厚生労働省が運営する、就職支援・雇用促進のためのサイト 「ハローワークインターネットサービス」内の求人情報を検索するためのサービスです。">
     <%= csrf_meta_tags %>
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
@@ -38,6 +38,13 @@
       <div class="content">
         <div class="row">
            <div class="span8">
+             <div class="site_description well">
+               <h5>はろわサーチとは</h5>
+               <p>
+               はろわサーチとは、厚生労働省が運営する、就職支援・雇用促進のためのサイト
+               「ハローワークインターネットサービス」内の求人情報を検索するためのサービスです。
+               </p>
+             </div>
               <%= yield %>
             </div>
             <div class="span4">
@@ -54,6 +61,22 @@
       </div><!--/content-->
 
       <footer>
+        <div class="well">
+          <h5>ハローワークインターネットサービスについて</h5>
+          <p>
+          「ハローワークインターネットサービス」では、求人の検索や雇用保険のお手続き、
+          求人のお申込み手続きや雇用保険・助成金、ハローワークの情報などのサービスを提供していますが、
+          そのシステムの仕組上求人情報がgoogle等の検索エンジンにインデックスされず、
+          多角的な検索が不可能なためこの「はろわサーチ」を運営しています。
+          </p>
+
+          <h5>都道府県別求人一覧</h5>
+          <p>
+            <% @common[:prefs].each do |pref| %>
+              <span><%= link_to pref.name, pref_path(pref.name_alnum.downcase) %></span>&nbsp;
+            <% end %>
+          </p>
+        </div><!--/.well -->
         <p>&copy; sanojimaru@GameraWorks 2012</p>
       </footer>
 
